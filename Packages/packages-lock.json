@@ -140,6 +140,12 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "com.yode.proceduraluiimage": {
+      "version": "file:proceduralui",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.yode.trueshadow": {
       "version": "file:trueshadows",
       "depth": 0,
