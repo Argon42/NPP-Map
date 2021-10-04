@@ -140,6 +140,13 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "com.unity.uiextensions": {
+      "version": "2.2.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://registry.npmjs.org"
+    },
     "com.yode.proceduraluiimage": {
       "version": "file:proceduralui",
       "depth": 0,

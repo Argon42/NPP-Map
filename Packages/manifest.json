@@ -1,5 +1,30 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "Packages from jillejr",
+      "url": "https://npm.cloudsmith.io/jillejr/newtonsoft-json-for-unity/",
+      "scopes": [
+        "jillejr"
+      ]
+    },
+    {
+      "name": "npmjs",
+      "url": "https://registry.npmjs.org/",
+      "scopes": [
+        "com.unity.uiextensions"
+      ]
+    },
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.coffee.upm-git-extension",
+        "com.openupm"
+      ]
+    }
+  ],
   "dependencies": {
+    "com.unity.uiextensions": "2.2.1",
     "com.unity.2d.animation": "5.0.4",
     "com.unity.2d.pixel-perfect": "4.0.1",
     "com.unity.2d.psdimporter": "4.0.2",
