@@ -1,0 +1,26 @@
+{
+  "name": "com.yode.trueshadow",
+  "version": "0.3.5",
+  "displayName": "TrueShadow",
+  "description": "https://assetstore.unity.com/packages/tools/gui/true-shadow-ui-soft-shadow-and-glow-beta-176322",
+  "hideInEditor": true,
+  "Samples" :[
+    {
+      "displayName": "Inspiration",
+      "description": "",
+      "path": "Samples~/Inspiration"
+    },{
+      "displayName": "Neumorphism",
+      "description": "",
+      "path": "Samples~/Neumorphism"
+    },{
+      "displayName": "Swipe",
+      "description": "",
+      "path": "Samples~/Swipe"
+    },{
+      "displayName": "Symbols",
+      "description": "",
+      "path": "Samples~/Symbols"
+    }
+  ]
+}
