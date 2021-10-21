@@ -6,29 +6,26 @@ namespace NPPMap
 {
     public class RoomInformationPopup : Popup<RoomInformation>
     {
+        private const float Offset = 300;
+
         [SerializeField] private TextMeshProUGUI roomTitle;
-        [SerializeField] private TextMeshProUGUI field1;
-        [SerializeField] private TextMeshProUGUI field2;
-        [SerializeField] private TextMeshProUGUI field3;
-        [SerializeField] private TextMeshProUGUI field4;
+        [SerializeField] private TextMeshProUGUI description;
 
-        private MachineInformation _machineInformation;
+        [Inject] private ListMachinePopup _listMachinePopup;
 
-        [Inject] private MachineInformationPopup _machineInformationPopup;
+        private RoomInformation _roomInformation;
 
         protected override void SetData(RoomInformation data)
         {
-            roomTitle.text = data.RoomTitle;
-            field1.text = data.Field1;
-            field2.text = data.Field2;
-            field3.text = data.Field3;
-            field4.text = data.MachineButtonText;
-            _machineInformation = data.MachineInformation;
+            roomTitle.text = data.Title;
+            description.text = data.Description;
+            _roomInformation = data;
         }
 
-        public void OpenMachineInformation()
+        public void OpenListMachines()
         {
-            _machineInformationPopup.Open(_machineInformation, field4.transform.position);
+            Vector3 popupPosition = transform.position + Vector3.right * Offset;
+            _listMachinePopup.Open(new ListMachinePopup.Data(_roomInformation), popupPosition);
         }
     }
 }

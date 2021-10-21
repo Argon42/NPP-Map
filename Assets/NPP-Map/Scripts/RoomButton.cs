@@ -14,7 +14,7 @@ namespace NPPMap
 
         private void OnEnable()
         {
-            roomName.text = roomInformation.RoomTitle;
+            roomName.text = roomInformation.Title;
         }
 
         public void Open()
