@@ -16,7 +16,7 @@ namespace NPPMap
         {
             _machinePopup = machinePopup;
             _machineData = machineInformation;
-            machineName.text = machineInformation.MachineTitle;
+            machineName.text = machineInformation.MachineName;
         }
 
         public void Open()

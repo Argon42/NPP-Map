@@ -12,14 +12,16 @@ namespace NPPMap
 
         [Inject] private RoomInformationPopup _roomInformationPopup;
 
+        public RoomInformation Information => roomInformation;
+
         private void OnEnable()
         {
-            roomName.text = roomInformation.Title;
+            roomName.text = Information.Title;
         }
 
         public void Open()
         {
-            _roomInformationPopup.Open(roomInformation, transform.position);
+            _roomInformationPopup.Open(Information, transform.position);
         }
     }
 }

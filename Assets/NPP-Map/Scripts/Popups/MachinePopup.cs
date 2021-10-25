@@ -10,7 +10,7 @@ namespace NPPMap
 
         protected override void SetData(MachineInformation data)
         {
-            title.text = data.MachineTitle;
+            title.text = data.MachineName;
             description.text = data.Description;
         }
     }

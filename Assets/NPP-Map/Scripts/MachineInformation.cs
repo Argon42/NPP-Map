@@ -6,10 +6,10 @@ namespace NPPMap
         menuName = Constants.ProjectName + "/" + nameof(MachineInformation))]
     public class MachineInformation : ScriptableObject
     {
-        [SerializeField] private string machineTitle;
+        [SerializeField] private string machineName;
         [SerializeField] private string description;
 
-        public string MachineTitle => machineTitle;
+        public string MachineName => machineName;
         public string Description => description;
     }
 }
