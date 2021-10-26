@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee92ed75da56841418b62a0327bbec25, type: 3}
+  m_Name: Room 11
+  m_EditorClassIdentifier: 
+  title: C 110
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut.
+  machinesInformation:
+  - {fileID: 11400000, guid: b40a19fa8c1f5604183edb96f6f529e7, type: 2}
+  - {fileID: 11400000, guid: eb593d4e5370ea54f8901367bd73bff6, type: 2}
+  - {fileID: 11400000, guid: 812c35edbe2604e46a2c1590e947ce74, type: 2}
+  - {fileID: 11400000, guid: 27fbe3c6ddc8310468cdb9087ca2a472, type: 2}
+  - {fileID: 11400000, guid: fb1051ebbdfd8024d8060532b34a4461, type: 2}
+  - {fileID: 11400000, guid: 11f464d7055978447b5485e9aa55f8ba, type: 2}

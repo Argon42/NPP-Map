@@ -12,4 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a28a5d42692cea4997eba0ef2acd480, type: 3}
   m_Name: Map
   m_EditorClassIdentifier: 
-  map: {fileID: 0}
+  map: {fileID: 21300000, guid: 0425ce9215e61094d90f83e1d1dcc22f, type: 3}
+  rooms:
+  - {fileID: 11400000, guid: 84f998a9191a2114eb795b00c0cbdb8b, type: 2}
+  - {fileID: 11400000, guid: 250387ac6f27fbd489c8c31f9bad5360, type: 2}
+  - {fileID: 11400000, guid: 5de0b8613d892b84d90d1bebf34d7201, type: 2}
+  - {fileID: 11400000, guid: fa07e0335f4ea3e488dcadd333d51f14, type: 2}
+  - {fileID: 11400000, guid: 080c5f923b8d5df47ac12a6727722911, type: 2}
+  - {fileID: 11400000, guid: 473d1c9b8089d63439424222e2246f8e, type: 2}
+  - {fileID: 11400000, guid: 6d47c7aacb5ce744e9ceb481d42eb7ab, type: 2}
+  - {fileID: 11400000, guid: 8b48fd1ffdd61414297e18e294736ee7, type: 2}
+  - {fileID: 11400000, guid: a7db9aff4aa7b5d498e7d2f5cfdce08b, type: 2}
+  - {fileID: 11400000, guid: e16672f1ca562d640bb0e93bcf9b8fc4, type: 2}
+  - {fileID: 11400000, guid: af608e05233d9ea46ae550bd42ebf02d, type: 2}
+  - {fileID: 11400000, guid: 621d9c5fdf9a0ad43b83acce764a12eb, type: 2}
+  - {fileID: 11400000, guid: 85835c404bbf699468e77ff169142fce, type: 2}
+  - {fileID: 11400000, guid: 2f5e9536c85eb0b4d894357c0ecbe216, type: 2}
+  - {fileID: 11400000, guid: aa5a3b162f3f04f45a129a4159568854, type: 2}
+  - {fileID: 11400000, guid: 5106de0e2337ba5449ee5dbeb66adbf1, type: 2}
+  - {fileID: 11400000, guid: 4d44bf92df8a77047a1694ac62dae8e1, type: 2}
+  - {fileID: 11400000, guid: 2e1b418a10dc36646bab4840e6bbc0cc, type: 2}
+  - {fileID: 11400000, guid: 31469bea733d5b240960b61abda647c2, type: 2}
+  - {fileID: 11400000, guid: d7fc12e7da3a2e2449728bf35b16809d, type: 2}
+  - {fileID: 11400000, guid: e110e1a8dc3331f458a77b933bbc698f, type: 2}
+  - {fileID: 11400000, guid: 06b3f470e000be34ca92ccebe9066c86, type: 2}
+  - {fileID: 11400000, guid: 846ee90f7a9165c4fb3ccdca65c18b37, type: 2}
+  - {fileID: 11400000, guid: 617fd0c9ae5513e4dbfe9b932e11b2ea, type: 2}

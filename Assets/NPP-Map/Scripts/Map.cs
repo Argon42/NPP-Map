@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace NPPMap
@@ -6,5 +7,6 @@ namespace NPPMap
     public class Map : ScriptableObject
     {
         [SerializeField] private Sprite map;
+        [SerializeField] private List<RoomInformation> rooms;
     }
 }
