@@ -8,8 +8,7 @@ namespace NPPMap
 {
     public class SearchPopup : Popup<string>
     {
-        [SerializeField] private Vector3 openPosition;
-
+        [SerializeField] private Transform spawnPosition;
         [SerializeField] private Transform parent;
         [SerializeField] private MachineButton buttonPrefab;
         [SerializeField] private List<MachineButton> buttonsInstances = new List<MachineButton>(20);
@@ -23,7 +22,7 @@ namespace NPPMap
 
         public void Search(string listOfNames) => SetData(listOfNames);
 
-        public void Open() => Open("", openPosition);
+        public void Open() => Open("", spawnPosition.position);
 
         private List<MachineInformation> FindMachines(string listOfNames)
         {
