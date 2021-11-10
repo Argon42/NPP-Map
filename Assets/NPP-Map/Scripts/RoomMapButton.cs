@@ -5,7 +5,7 @@ using Zenject;
 
 namespace NPPMap
 {
-    public class RoomButton : MonoBehaviour
+    public class RoomMapButton : MonoBehaviour
     {
         [SerializeField] private RoomInformation roomInformation;
         [SerializeField] private TextMeshProUGUI roomName;

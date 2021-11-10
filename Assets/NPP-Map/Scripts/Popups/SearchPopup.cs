@@ -10,15 +10,24 @@ namespace NPPMap
     {
         [SerializeField] private Transform spawnPosition;
         [SerializeField] private Transform parent;
-        [SerializeField] private MachineButton buttonPrefab;
-        [SerializeField] private List<MachineButton> buttonsInstances = new List<MachineButton>(20);
+
+        [Space, SerializeField] private MachineButton machineButtonPrefab;
+        [SerializeField] private List<MachineButton> machineButtonsInstances = new List<MachineButton>(20);
+
+        [Space, SerializeField] private RoomButton roomButtonPrefab;
+        [SerializeField] private List<RoomButton> roomButtonsInstances = new List<RoomButton>(20);
 
         private readonly char[] _separators = {',', ';'};
 
         [Inject] private MachinePopup _machinePopup;
         [Inject] private MapObject _map;
+        [Inject] private RoomInformationPopup _roomPopup;
 
-        protected override void SetData(string listOfNames) => SetupButtons(FindMachines(listOfNames));
+        protected override void SetData(string listOfNames)
+        {
+            SetupMachineButtons(FindMachines(listOfNames));
+            SetupRoomButtons(FindRooms(listOfNames));
+        }
 
         public void Search(string listOfNames) => SetData(listOfNames);
 
@@ -31,24 +40,53 @@ namespace NPPMap
                 .Select(machine => machine.Trim())
                 .ToArray();
             List<MachineInformation> machines = _map.GetMachines();
+
             return machines.Where(machine => names.Contains(machine.MachineName)).ToList();
         }
 
-        private void SetupButtons(List<MachineInformation> data)
+        private List<RoomInformation> FindRooms(string listOfNames)
         {
-            for (var i = 0; i < data.Count || i < buttonsInstances.Count; i++)
+            string[] names = listOfNames
+                .Split(_separators, StringSplitOptions.RemoveEmptyEntries)
+                .Select(machine => machine.Trim())
+                .ToArray();
+            List<RoomInformation> rooms = _map.GetRooms();
+
+            return rooms.Where(room => names.Contains(room.Title)).ToList();
+        }
+
+        private void SetupMachineButtons(List<MachineInformation> data)
+        {
+            for (var i = 0; i < data.Count || i < machineButtonsInstances.Count; i++)
             {
-                if (i >= buttonsInstances.Count)
-                    buttonsInstances.Add(CreateButton());
+                if (i >= machineButtonsInstances.Count)
+                    machineButtonsInstances.Add(CreateMachineButton());
 
                 bool hasData = i < data.Count;
-                buttonsInstances[i].gameObject.SetActive(hasData);
+                machineButtonsInstances[i].gameObject.SetActive(hasData);
 
                 if (hasData)
-                    buttonsInstances[i].SetData(data[i], _machinePopup);
+                    machineButtonsInstances[i].SetData(data[i], _machinePopup);
             }
         }
 
-        private MachineButton CreateButton() => Instantiate(buttonPrefab, parent);
+        private void SetupRoomButtons(List<RoomInformation> data)
+        {
+            for (var i = 0; i < data.Count || i < roomButtonsInstances.Count; i++)
+            {
+                if (i >= roomButtonsInstances.Count)
+                    roomButtonsInstances.Add(CreateRoomButton());
+
+                bool hasData = i < data.Count;
+                roomButtonsInstances[i].gameObject.SetActive(hasData);
+
+                if (hasData)
+                    roomButtonsInstances[i].SetData(data[i], _roomPopup);
+            }
+        }
+
+        private MachineButton CreateMachineButton() => Instantiate(machineButtonPrefab, parent);
+
+        private RoomButton CreateRoomButton() => Instantiate(roomButtonPrefab, parent);
     }
 }

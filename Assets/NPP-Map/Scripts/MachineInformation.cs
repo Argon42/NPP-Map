@@ -11,5 +11,13 @@ namespace NPPMap
 
         public string MachineName => machineName;
         public string Description => description;
+
+
+        public MachineInformation Init(string machineName, string description)
+        {
+            this.machineName = machineName;
+            this.description = description;
+            return this;
+        }
     }
 }
