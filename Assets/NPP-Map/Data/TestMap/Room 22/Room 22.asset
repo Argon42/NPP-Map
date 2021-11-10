@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee92ed75da56841418b62a0327bbec25, type: 3}
   m_Name: Room 22
   m_EditorClassIdentifier: 
-  title: C 121
+  title: 104/4
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut.
   machinesInformation:
