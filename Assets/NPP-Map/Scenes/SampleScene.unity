@@ -1115,9 +1115,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationDuration: 0.1
+  onStartOpen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 283056421}
+        m_TargetAssemblyTypeName: NPPMap.Utility.LayoutUpdater, Assembly-CSharp
+        m_MethodName: UpdateLayouts
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   roomTitle: {fileID: 283056416}
   description: {fileID: 794512232}
   positionForOpen: {fileID: 875651289}
+--- !u!114 &283056421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283056417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1a11fc8dd14cd899d894685cd2ae7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &286985324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4891,11 +4918,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationDuration: 0.1
+  onStartOpen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1714699240}
+        m_TargetAssemblyTypeName: NPPMap.Utility.LayoutUpdater, Assembly-CSharp
+        m_MethodName: UpdateLayouts
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   roomTitle: {fileID: 1714699235}
   parent: {fileID: 1714699233}
   pool:
     prefab: {fileID: 7128820928460227444, guid: c61d65ee949bf504b9477446a1101c54, type: 3}
     instances: []
+--- !u!114 &1714699240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714699236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1a11fc8dd14cd899d894685cd2ae7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1715327065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5304,6 +5358,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationDuration: 0.1
+  onStartOpen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1736438002}
+        m_TargetAssemblyTypeName: NPPMap.Utility.LayoutUpdater, Assembly-CSharp
+        m_MethodName: UpdateLayouts
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   spawnPosition: {fileID: 875651289}
   parent: {fileID: 1736437995}
   machinePool:
@@ -5312,6 +5381,18 @@ MonoBehaviour:
   roomPool:
     prefab: {fileID: 7128820928460227444, guid: b16066ad9bffe8c49a54fecd57b11e43, type: 3}
     instances: []
+--- !u!114 &1736438002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736437998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1a11fc8dd14cd899d894685cd2ae7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1767159315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6506,8 +6587,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationDuration: 0.1
+  onStartOpen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2080108648}
+        m_TargetAssemblyTypeName: NPPMap.Utility.LayoutUpdater, Assembly-CSharp
+        m_MethodName: UpdateLayouts
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   title: {fileID: 2080108643}
   description: {fileID: 973162315}
+--- !u!114 &2080108648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080108644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1a11fc8dd14cd899d894685cd2ae7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2145704901
 GameObject:
   m_ObjectHideFlags: 0

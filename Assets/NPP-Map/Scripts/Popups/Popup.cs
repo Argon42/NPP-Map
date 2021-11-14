@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 namespace NPPMap
@@ -7,6 +8,7 @@ namespace NPPMap
     public abstract class Popup<T> : MonoBehaviour, IDragHandler
     {
         [SerializeField] private float animationDuration = 0.5f;
+        [SerializeField] private UnityEvent onStartOpen;
 
         public bool IsOpened { get; private set; }
 
@@ -23,7 +25,8 @@ namespace NPPMap
             SetData(data);
             SetPopupPosition(position);
             gameObject.SetActive(true);
-
+            await Task.Yield();
+            onStartOpen?.Invoke();
             await AnimatePopup(Vector3.zero, Vector3.one, animationDuration);
 
             IsOpened = true;
