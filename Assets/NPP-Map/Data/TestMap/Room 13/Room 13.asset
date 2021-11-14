@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee92ed75da56841418b62a0327bbec25, type: 3}
+  m_Name: Room 13
+  m_EditorClassIdentifier: 
+  title: 106/1
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut.
+  machinesInformation:
+  - {fileID: 11400000, guid: 181f487d138c6d8469134d59498de3a8, type: 2}
+  - {fileID: 11400000, guid: 2161d30be02e5b548b81601fdf38adef, type: 2}
+  - {fileID: 11400000, guid: 8aedc62d9c002ff4997b5922af77e8a6, type: 2}
+  - {fileID: 11400000, guid: 43dfe206f65cfba478dbd3d367a65391, type: 2}
+  - {fileID: 11400000, guid: b7ba4ad157e6fb04aaf5e27ed0555a49, type: 2}
+  - {fileID: 11400000, guid: 92274493867fffa4c9857743c2f1dcae, type: 2}
+  map: {fileID: 21300000, guid: 13aef402456b95d4bb2fe44455f93139, type: 3}

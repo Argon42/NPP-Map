@@ -11,9 +11,13 @@ namespace NPPMap
         [SerializeField] private TextMeshProUGUI roomTitle;
         [SerializeField] private TextMeshProUGUI description;
 
+        [SerializeField] private Transform positionForOpen;
+
         [Inject] private ListMachinePopup _listMachinePopup;
 
         private RoomInformation _roomInformation;
+
+        public void Open(RoomInformation data) => Open(data, positionForOpen.position);
 
         protected override void SetData(RoomInformation data)
         {

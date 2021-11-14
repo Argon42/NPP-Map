@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using NPPMap.Utility;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -11,33 +12,26 @@ namespace NPPMap
 
         [SerializeField] private TextMeshProUGUI roomTitle;
         [SerializeField] private Transform parent;
-        [SerializeField] private MachineButton buttonPrefab;
-        [SerializeField] private List<MachineButton> buttonsInstances = new List<MachineButton>(20);
+        [SerializeField] private Pool<MachineButton, MachineInformation> pool;
 
         [Inject] private MachinePopup _machinePopup;
 
+        private void TryInit()
+        {
+            if(pool.Initialized)
+                return;
+            pool.Init(
+                button => MachineButton.Create(button, parent, _machinePopup),
+                (button, information) => button.SetData(information)
+            );
+        }
+
         protected override void SetData(Data data)
         {
+            TryInit();
             roomTitle.text = $"{RoomTitle} {data.RoomName}";
-            SetupButtons(data);
+            pool.SetupData(data.Machines);
         }
-
-        private void SetupButtons(Data data)
-        {
-            for (var i = 0; i < data.Machines.Count || i < buttonsInstances.Count; i++)
-            {
-                if (i >= buttonsInstances.Count)
-                    buttonsInstances.Add(CreateButton());
-
-                bool hasData = i < data.Machines.Count;
-                buttonsInstances[i].gameObject.SetActive(hasData);
-
-                if (hasData)
-                    buttonsInstances[i].SetData(data.Machines[i], _machinePopup);
-            }
-        }
-
-        private MachineButton CreateButton() => Instantiate(buttonPrefab, parent);
 
         public class Data
         {

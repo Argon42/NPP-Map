@@ -15,3 +15,4 @@ MonoBehaviour:
   machineName: "3\u04225 8500"
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut.
+  positionOnMap: {x: 0.9018347, y: 0.7425916}

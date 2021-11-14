@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace NPPMap
 {
@@ -10,18 +11,28 @@ namespace NPPMap
         [SerializeField] private TextMeshProUGUI machineName;
 
         private RoomInformation _roomData;
-        private RoomInformationPopup _roomInformationPopup;
 
-        public void SetData(RoomInformation machineInformation, RoomInformationPopup machinePopup)
+        private RoomInformationPopup _roomInformationPopup;
+        private RoomMapDrawer _map;
+
+        public void SetData(RoomInformation machineInformation)
         {
-            _roomInformationPopup = machinePopup;
             _roomData = machineInformation;
             machineName.text = machineInformation.Title;
         }
 
         public void Open()
         {
-            _roomInformationPopup.Open(_roomData, transform.position + Vector3.right * Offset);
+            _roomInformationPopup.Open(_roomData);
+            _map.Open(_roomData);
+        }
+
+        public static RoomButton Create(RoomButton prefab, Transform parent, RoomInformationPopup popup, RoomMapDrawer roomMapDrawer)
+        {
+            RoomButton instance = Instantiate(prefab, parent);
+            instance._map = roomMapDrawer;
+            instance._roomInformationPopup = popup;
+            return instance;
         }
     }
 }

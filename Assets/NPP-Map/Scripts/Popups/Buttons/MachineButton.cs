@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace NPPMap
 {
@@ -12,9 +13,8 @@ namespace NPPMap
         private MachineInformation _machineData;
         private MachinePopup _machinePopup;
 
-        public void SetData(MachineInformation machineInformation, MachinePopup machinePopup)
+        public void SetData(MachineInformation machineInformation)
         {
-            _machinePopup = machinePopup;
             _machineData = machineInformation;
             machineName.text = machineInformation.MachineName;
         }
@@ -22,6 +22,13 @@ namespace NPPMap
         public void Open()
         {
             _machinePopup.Open(_machineData, transform.position + Vector3.right * Offset);
+        }
+
+        public static MachineButton Create(MachineButton prefab, Transform parent, MachinePopup popup)
+        {
+            MachineButton instance = Instantiate(prefab, parent);
+            instance._machinePopup = popup;
+            return instance;
         }
     }
 }

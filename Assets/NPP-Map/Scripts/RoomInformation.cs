@@ -9,15 +9,15 @@ namespace NPPMap
         [SerializeField] private string title;
         [SerializeField] private string description;
         [SerializeField] private List<MachineInformation> machinesInformation;
+        [SerializeField] private Sprite map;
+
         public string Title => title;
         public string Description => description;
         public IReadOnlyList<MachineInformation> MachinesInformation => machinesInformation;
 
-        public void Init(string title, string description, List<MachineInformation> machinesInformation)
+        public Sprite LoadMap()
         {
-            this.title = title;
-            this.description = description;
-            this.machinesInformation = machinesInformation;
+            return map;
         }
     }
 }

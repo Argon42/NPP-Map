@@ -11,6 +11,7 @@ namespace NPPMap
         [SerializeField] private ListMachinePopup listMachinePopup;
         [SerializeField] private MachinePopup machinePopup;
         [SerializeField] private SearchPopup searchPopup;
+        [SerializeField] private RoomMapDrawer mapDrawer;
 
         public override void InstallBindings()
         {
@@ -19,6 +20,7 @@ namespace NPPMap
             Container.Bind<ListMachinePopup>().FromInstance(listMachinePopup).AsSingle();
             Container.Bind<MachinePopup>().FromInstance(machinePopup).AsSingle();
             Container.Bind<SearchPopup>().FromInstance(searchPopup).AsSingle();
+            Container.Bind<RoomMapDrawer>().FromInstance(mapDrawer).AsSingle();
         }
     }
 }

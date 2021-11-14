@@ -8,16 +8,10 @@ namespace NPPMap
     {
         [SerializeField] private string machineName;
         [SerializeField] private string description;
+        [SerializeField] private Vector2 positionOnMap;
 
         public string MachineName => machineName;
         public string Description => description;
-
-
-        public MachineInformation Init(string machineName, string description)
-        {
-            this.machineName = machineName;
-            this.description = description;
-            return this;
-        }
+        public Vector2 PositionOnMap => positionOnMap;
     }
 }

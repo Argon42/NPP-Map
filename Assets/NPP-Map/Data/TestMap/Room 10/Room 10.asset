@@ -18,3 +18,4 @@ MonoBehaviour:
   machinesInformation:
   - {fileID: 11400000, guid: e3b7ff74b75aefb4cb2f4b0c9f568b84, type: 2}
   - {fileID: 11400000, guid: 4d9b42a294075574c993dc522fe9ca68, type: 2}
+  map: {fileID: 21300000, guid: 1456f2d7db6febd43be27c896c53a859, type: 3}
