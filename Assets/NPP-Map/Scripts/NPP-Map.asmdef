@@ -1,0 +1,20 @@
+{
+    "name": "NPP-Map",
+    "rootNamespace": "NPPMap",
+    "references": [
+        "Zenject",
+        "Unity.TextMeshPro",
+        "UnityUIExtensions",
+        "DOTween.Modules",
+        "SimpleFileBrowser.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

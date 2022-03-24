@@ -19,7 +19,8 @@
       "url": "https://package.openupm.com",
       "scopes": [
         "com.coffee.upm-git-extension",
-        "com.openupm"
+        "com.openupm",
+        "com.yasirkula.simplefilebrowser"
       ]
     }
   ],
@@ -67,6 +68,7 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+    "com.yasirkula.simplefilebrowser": "1.5.3"
   }
 }

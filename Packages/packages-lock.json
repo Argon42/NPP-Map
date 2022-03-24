@@ -24,7 +24,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.2d.path": {
-      "version": "4.0.1",
+      "version": "4.0.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -146,6 +146,13 @@
       "source": "registry",
       "dependencies": {},
       "url": "https://registry.npmjs.org"
+    },
+    "com.yasirkula.simplefilebrowser": {
+      "version": "1.5.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
     },
     "com.yode.proceduraluiimage": {
       "version": "file:proceduralui",
