@@ -25,6 +25,8 @@
     }
   ],
   "dependencies": {
+    "jillejr.newtonsoft.json-for-unity": "13.0.102",
+    "jillejr.newtonsoft.json-for-unity.converters": "1.0.0",
     "com.unity.uiextensions": "2.2.1",
     "com.unity.2d.animation": "5.0.4",
     "com.unity.2d.pixel-perfect": "4.0.1",
