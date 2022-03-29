@@ -1,44 +1,26 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using mattatz.Triangulation2DSystem;
 using UnityEngine;
-
 
 namespace NPPMap.MapCreating
 {
-    public class Room
+    public class Room : MonoBehaviour
     {
-        private readonly LinkedList<Vector2> _points = new LinkedList<Vector2>();
-        private readonly IRoomVisualizer _roomVisualizer;
+        [SerializeField] private MeshFilter meshFilter;
+        [SerializeField] private LineRenderer lineRenderer;
 
-        public Room(IRoomVisualizer roomVisualizer)
+        private Vector2[] _points;
+
+        public void Init(Vector2[] roomSketchPoints)
         {
-            _roomVisualizer = roomVisualizer;
-        }
+            _points = roomSketchPoints;
 
-        public void Clear()
-        {
-            _points.Clear();
-            _roomVisualizer.Clear();
-        }
+            var triangulation = new Triangulation2D(Polygon2D.Contour(roomSketchPoints));
+            meshFilter.mesh = triangulation.Build();
 
-        public void AddPoint(Vector2 position)
-        {
-            _points.AddLast(position);
-            _roomVisualizer.Visualize(_points.ToList());
-        }
-
-        public void RemoveLastPoint()
-        {
-            _points.RemoveLast();
-            _roomVisualizer.Visualize(_points.ToList());
-        }
-
-        public (bool successful, Vector2 point) TryGetLastPoint()
-        {
-            if (_points.Count == 0)
-                return (false, default);
-
-            return (true, _points.Last());
+            lineRenderer.loop = true;
+            lineRenderer.positionCount = roomSketchPoints.Length;
+            lineRenderer.SetPositions(roomSketchPoints.Select(point => (Vector3)point).ToArray());
         }
     }
 }

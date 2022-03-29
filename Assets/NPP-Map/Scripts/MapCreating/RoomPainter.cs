@@ -2,12 +2,29 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-
 namespace NPPMap.MapCreating
 {
     internal class RoomPainter : MonoBehaviour, IRoomPainter
     {
+        private enum MouseButton
+        {
+            Left = 0,
+            Right = 1
+        }
+
+        private enum PainterState
+        {
+            None,
+            StartPaint,
+            Painting
+        }
+
         private const int CountOfAxis = 8;
+
+        public event Action<Vector2> OnSetPoint;
+        public event Action<Vector2> OnStartPaintWall;
+        public event Action<Vector2> OnChangeEndWallPosition;
+        public event Action OnPaintCanceled;
         [SerializeField] private new Camera camera;
         [SerializeField] private MouseButton mouseButton;
         private PainterState _currentState = PainterState.None;
@@ -16,22 +33,17 @@ namespace NPPMap.MapCreating
         private Vector2 _startPoint;
         private Func<(bool successful, Vector2 position)> _tryGetLastPoint;
 
+        public void Init(Func<(bool successful, Vector2 position)> tryGetLastPoint)
+        {
+            _tryGetLastPoint = tryGetLastPoint;
+        }
+
         private void Update()
         {
             if (_enable == false)
                 return;
 
             ClickCalculation();
-        }
-
-        public event Action<Vector2> OnSetPoint;
-        public event Action<Vector2> OnStartPaintWall;
-        public event Action<Vector2> OnChangeEndWallPosition;
-        public event Action OnPaintCanceled;
-
-        public void Init(Func<(bool successful, Vector2 position)> tryGetLastPoint)
-        {
-            _tryGetLastPoint = tryGetLastPoint;
         }
 
         public void Disable()
@@ -50,7 +62,7 @@ namespace NPPMap.MapCreating
 
         private void ClickCalculation()
         {
-            bool pointerOverGameObject = EventSystem.current.IsPointerOverGameObject();
+            bool pointerOverGameObject = GetPointerOverGameObject();
             bool buttonDown = Input.GetMouseButtonDown((int)mouseButton);
             bool buttonUp = Input.GetMouseButtonUp((int)mouseButton);
             bool buttonPressed = Input.GetMouseButton((int)mouseButton);
@@ -73,33 +85,19 @@ namespace NPPMap.MapCreating
             ProcessMouseClick(buttonDown, pointPosition, buttonUp, buttonPressed);
         }
 
-        private Vector2 ProcessShiftPress(Vector2 pointPosition)
+        private Vector2 GetMousePosition() => camera.ScreenToWorldPoint(Input.mousePosition);
+
+        private bool GetPointerOverGameObject()
         {
-            if (Input.GetKey(KeyCode.LeftShift) == false)
-                return pointPosition;
+            var inputModule = EventSystem.current.currentInputModule as InputModule;
+            if (inputModule == null)
+                return EventSystem.current.IsPointerOverGameObject();
 
-            if (_tryGetLastPoint == null)
-                return RecalculateLine(_startPoint, pointPosition);
+            GameObject underPointer = inputModule.GameObjectUnderPointer();
+            if (underPointer == null)
+                return false;
 
-            (bool successful, Vector2 position) = _tryGetLastPoint();
-            return RecalculateLine(successful ? position : _startPoint, pointPosition);
-        }
-
-        private Vector2 RecalculateLine(Vector2 startPoint, Vector2 endPoint)
-        {
-            const float circle = 360f;
-            const float halfCircle = 360 / 2f;
-            const float pie = circle / CountOfAxis;
-            
-            float distance = Vector2.Distance(startPoint, endPoint);
-            float signedAngle = Vector2.SignedAngle(Vector2.right, endPoint - startPoint);
-            float angle = signedAngle + halfCircle;
-            float niceAngle = Mathf.Floor(angle / pie + 0.5f) * pie - halfCircle;
-
-            float x = Mathf.Cos(niceAngle / Mathf.Rad2Deg);
-            float y = Mathf.Sin(niceAngle / Mathf.Rad2Deg);
-
-            return startPoint + new Vector2(x, y) * distance;
+            return underPointer.layer == LayerMask.NameToLayer("UI");
         }
 
         private void ProcessMouseClick(bool buttonDown, Vector2 pointPosition, bool buttonUp, bool buttonPressed)
@@ -122,19 +120,33 @@ namespace NPPMap.MapCreating
             }
         }
 
-        private Vector2 GetMousePosition() => camera.ScreenToWorldPoint(Input.mousePosition);
-
-        private enum PainterState
+        private Vector2 ProcessShiftPress(Vector2 pointPosition)
         {
-            None,
-            StartPaint,
-            Painting
+            if (Input.GetKey(KeyCode.LeftShift) == false)
+                return pointPosition;
+
+            if (_tryGetLastPoint == null)
+                return RecalculateLine(_startPoint, pointPosition);
+
+            (bool successful, Vector2 position) = _tryGetLastPoint();
+            return RecalculateLine(successful ? position : _startPoint, pointPosition);
         }
 
-        private enum MouseButton
+        private Vector2 RecalculateLine(Vector2 startPoint, Vector2 endPoint)
         {
-            Left = 0,
-            Right = 1
+            const float circle = 360f;
+            const float halfCircle = 360 / 2f;
+            const float pie = circle / CountOfAxis;
+
+            float distance = Vector2.Distance(startPoint, endPoint);
+            float signedAngle = Vector2.SignedAngle(Vector2.right, endPoint - startPoint);
+            float angle = signedAngle + halfCircle;
+            float niceAngle = Mathf.Floor(angle / pie + 0.5f) * pie - halfCircle;
+
+            float x = Mathf.Cos(niceAngle / Mathf.Rad2Deg);
+            float y = Mathf.Sin(niceAngle / Mathf.Rad2Deg);
+
+            return startPoint + new Vector2(x, y) * distance;
         }
     }
 }

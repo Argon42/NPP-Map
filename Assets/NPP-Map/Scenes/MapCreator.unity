@@ -360,7 +360,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 182578762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: f4f2ae6d60a88b5479d3021a8dbad4dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalAxis: Horizontal
@@ -2056,6 +2056,8 @@ MonoBehaviour:
   simpleRoomVisualizer: {fileID: 515812769}
   simpleWallVisualizer: {fileID: 1949409300}
   createRoomUI: {fileID: 876124366}
+  roomPrefab: {fileID: 8769782591819223787, guid: b964712ff5a40d94ea7b7933e00e2b32, type: 3}
+  parentForRooms: {fileID: 1937546931}
 --- !u!1 &1568399582
 GameObject:
   m_ObjectHideFlags: 0
@@ -2368,6 +2370,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1606486354}
   m_CullTransparentMesh: 1
+--- !u!1 &1937546930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1937546931}
+  m_Layer: 0
+  m_Name: Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1937546931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937546930}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1949409297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2654,6 +2686,7 @@ GameObject:
   - component: {fileID: 2014982245}
   - component: {fileID: 2014982244}
   - component: {fileID: 2014982243}
+  - component: {fileID: 2014982246}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2726,3 +2759,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2014982246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014982242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0

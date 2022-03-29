@@ -6,7 +6,8 @@
         "Unity.TextMeshPro",
         "UnityUIExtensions",
         "DOTween.Modules",
-        "SimpleFileBrowser.Runtime"
+        "SimpleFileBrowser.Runtime",
+        "Triangulation2D"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace NPPMap.MapCreating
 {
@@ -9,22 +9,30 @@ namespace NPPMap.MapCreating
         [SerializeField] private SimpleRoomVisualizer simpleRoomVisualizer;
         [SerializeField] private SimpleWallVisualizer simpleWallVisualizer;
         [SerializeField] private GameObject createRoomUI;
+        [SerializeField] private Room roomPrefab;
+        [SerializeField] private Transform parentForRooms;
 
-        private Room _room;
+        private RoomSketch _roomSketch;
+        private readonly List<Room> _rooms = new List<Room>();
 
         private void Start()
         {
-            _room = new Room(simpleRoomVisualizer);
-            roomPainter.Init(_room.TryGetLastPoint);
-            simpleWallVisualizer.Init(roomPainter, _room.TryGetLastPoint);
+            _roomSketch = new RoomSketch(simpleRoomVisualizer);
+            roomPainter.Init(_roomSketch.TryGetLastPoint);
+            simpleWallVisualizer.Init(roomPainter, _roomSketch.TryGetLastPoint);
+        }
+
+        public void Clear()
+        {
+            _roomSketch.Clear();
         }
 
         public void Disable()
         {
-            _room.Clear();
+            _roomSketch.Clear();
             roomPainter.Disable();
             simpleWallVisualizer.Disable();
-            roomPainter.OnSetPoint -= _room.AddPoint;
+            roomPainter.OnSetPoint -= _roomSketch.AddPoint;
             createRoomUI.SetActive(false);
         }
 
@@ -32,22 +40,26 @@ namespace NPPMap.MapCreating
         {
             simpleWallVisualizer.Enable();
             roomPainter.Enable();
-            roomPainter.OnSetPoint += _room.AddPoint;
+            roomPainter.OnSetPoint += _roomSketch.AddPoint;
             createRoomUI.SetActive(true);
         }
 
         public void Save()
         {
+            _rooms.Add(CreateRoom(_roomSketch.Points));
+            _roomSketch.Clear();
         }
 
         public void Undo()
         {
-            _room.RemoveLastPoint();
+            _roomSketch.RemoveLastPoint();
         }
 
-        public void Clear()
+        private Room CreateRoom(Vector2[] roomSketchPoints)
         {
-            _room.Clear();
+            Room room = Instantiate(roomPrefab, parentForRooms);
+            room.Init(roomSketchPoints);
+            return room;
         }
     }
 }
