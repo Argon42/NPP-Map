@@ -1,28 +1,28 @@
 using UnityEngine;
 
-
 namespace NPPMap.MapCreating
 {
     public class MapCreator : MonoBehaviour
     {
         [SerializeField] private CreatingRoomState creatingRoomState;
-        [SerializeField] private ViewState viewState;
+        [SerializeField] private MenuState menuState;
 
         private StateMachine _stateMachine;
 
         private void Start()
         {
-            _stateMachine = new StateMachine(viewState);
+            _stateMachine = new StateMachine(menuState);
         }
 
-        public void CreateRoom()
+        public void OpenState(IState state)
         {
-            _stateMachine.ChangeState(creatingRoomState);
+            _stateMachine.ChangeState(state);
         }
 
-        public void CancelCreateRoom()
+        public void OpenState(GameObject objectWithState)
         {
-            _stateMachine.ChangeState(viewState);
+            if (objectWithState.TryGetComponent(out IState state))
+                OpenState(state);
         }
     }
 }

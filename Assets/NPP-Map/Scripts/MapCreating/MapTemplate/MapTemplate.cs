@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using NPPMap.Utility;
 using SimpleFileBrowser;
@@ -9,6 +10,8 @@ namespace NPPMap.MapCreating.MapTemplate
 {
     public class MapTemplate : MonoBehaviour
     {
+        public event Action OnDestroyTemplate;
+
         [SerializeField] private Canvas canvas;
         [SerializeField] private RawImage image;
         [SerializeField] private MapTemplateSettings prefab;
@@ -33,6 +36,7 @@ namespace NPPMap.MapCreating.MapTemplate
         public void DisableTemplate()
         {
             Destroy(gameObject);
+            OnDestroyTemplate?.Invoke();
         }
 
         public void EnableMove()

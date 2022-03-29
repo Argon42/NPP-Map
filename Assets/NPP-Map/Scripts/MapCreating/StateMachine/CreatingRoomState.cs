@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
+using NPPMap.MapCreating.MapTemplate;
 using SimpleFileBrowser;
 using UnityEngine;
 
@@ -15,16 +16,25 @@ namespace NPPMap.MapCreating
         [SerializeField] private GameObject createRoomUI;
         [SerializeField] private Room roomPrefab;
         [SerializeField] private Transform parentForRooms;
+        [SerializeField] private MapTemplateCreator templateCreator;
 
         private RoomSketch _roomSketch;
-        private readonly List<Room> _rooms = new List<Room>();
         private float _offsetZ = 10;
+
+        private RoomFactory _roomFactory;
+        private Map _map;
 
         private void Start()
         {
+            _roomFactory = new RoomFactory(roomPrefab, parentForRooms);
             _roomSketch = new RoomSketch(simpleRoomVisualizer);
             roomPainter.Init(_roomSketch.TryGetLastPoint);
             simpleWallVisualizer.Init(roomPainter, _roomSketch.TryGetLastPoint);
+        }
+
+        public void ClearMap()
+        {
+            _map.Clear();
         }
 
         public void ClearRoom()
@@ -32,27 +42,23 @@ namespace NPPMap.MapCreating
             _roomSketch.Clear();
         }
 
-        public void ClearMap()
-        {
-            _rooms.ForEach(room => Destroy(room.gameObject));
-            _rooms.Clear();
-        }
-
         public void Disable()
         {
             _roomSketch.Clear();
             roomPainter.Disable();
             simpleWallVisualizer.Disable();
-
+            templateCreator.CloseAllTemplates();
+            
             ClearRoom();
             ClearMap();
-            
+
             roomPainter.OnSetPoint -= _roomSketch.AddPoint;
             createRoomUI.SetActive(false);
         }
 
         public void Enable()
         {
+            _map = new Map(new MapData(), new List<Room>());
             simpleWallVisualizer.Enable();
             roomPainter.Enable();
             roomPainter.OnSetPoint += _roomSketch.AddPoint;
@@ -71,7 +77,7 @@ namespace NPPMap.MapCreating
 
         public void SaveRoom()
         {
-            _rooms.Add(CreateRoom(_roomSketch.Points));
+            _map.AddRoom(CreateRoom(_roomSketch.Points));
             _roomSketch.Clear();
         }
 
@@ -86,14 +92,7 @@ namespace NPPMap.MapCreating
             Vector3 roomPosition = (Vector3)center + Vector3.forward * _offsetZ;
             var roomData = new RoomData(roomSketchPoints.Select(point => point - center).ToList(), roomPosition);
 
-            return CreateRoom(roomData);
-        }
-
-        private Room CreateRoom(RoomData roomData)
-        {
-            Room room = Instantiate(roomPrefab, roomData.RoomPosition, Quaternion.identity, parentForRooms);
-            room.Init(roomData);
-            return room;
+            return _roomFactory.CreateRoom(roomData);
         }
 
         private Vector2 FindCenter(Vector2[] roomSketchPoints)
@@ -119,23 +118,14 @@ namespace NPPMap.MapCreating
 
         private void LoadMap(string path)
         {
-            string json = File.ReadAllText(path);
-
-            if (string.IsNullOrEmpty(json))
-                return;
-
-            var rooms = JsonConvert.DeserializeObject<List<RoomData>>(json);
-            if (rooms == null)
-                return;
-
+            string mapJson = File.ReadAllText(path);
             ClearMap();
-            foreach (RoomData roomData in rooms)
-                _rooms.Add(CreateRoom(roomData));
+            _map = _roomFactory.CreateMap(mapJson);
         }
 
         private void SaveMap(string path)
         {
-            string json = JsonConvert.SerializeObject(_rooms.Select(room => room.Data).ToList());
+            string json = JsonConvert.SerializeObject(_map.MapData);
             File.WriteAllText(path, json);
         }
     }

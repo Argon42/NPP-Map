@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace NPPMap.MapCreating
 {
-    internal class ViewState : MonoBehaviour, IState
+    internal class MenuState : MonoBehaviour, IState
     {
         [SerializeField] private GameObject buttons;
         

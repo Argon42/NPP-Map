@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using mattatz.Triangulation2DSystem;
 using UnityEngine;
 
@@ -31,37 +29,11 @@ namespace NPPMap.MapCreating
             lineRenderer.SetPositions(positions);
 
             Vector3 PointsForLine(Vector2 point) => (Vector3)point + Vector3.forward * -0.01f;
+            OnInit();
         }
-    }
 
-    public class RoomData
-    {
-        public string Description { get; set; }
-
-        public string Name { get; set; }
-
-        public List<Vector2> Points { get; set; } = new List<Vector2>();
-
-        public List<RoomObjectData> RoomObjects { get; set; } = new List<RoomObjectData>();
-
-        public Vector3 RoomPosition { get; set; }
-
-        public RoomData()
+        protected virtual void OnInit()
         {
         }
-
-        public RoomData(List<Vector2> roomPoints, Vector3 roomPosition)
-        {
-            if (roomPoints == null || roomPoints.Count < 3)
-                throw new ArgumentException("Incorrect room, minimum 3 points");
-            Points = roomPoints;
-            RoomPosition = roomPosition;
-        }
-    }
-
-    public class RoomObjectData
-    {
-        public string Description { get; set; }
-        public string Name { get; set; }
     }
 }

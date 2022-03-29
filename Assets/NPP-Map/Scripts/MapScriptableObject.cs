@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace NPPMap
 {
-    [CreateAssetMenu(fileName = nameof(Map), menuName = Constants.ProjectName + "/" + nameof(Map))]
-    public class Map : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(MapScriptableObject), menuName = Constants.ProjectName + "/" + nameof(MapScriptableObject))]
+    public class MapScriptableObject : ScriptableObject
     {
         [SerializeField] private Sprite map;
         [SerializeField] private List<RoomInformation> rooms;
