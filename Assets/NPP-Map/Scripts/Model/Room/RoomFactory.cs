@@ -6,18 +6,18 @@ using Object = UnityEngine.Object;
 
 namespace NPPMap.MapCreating
 {
-    public class RoomFactory
+    public class RoomFactory<T> where T : Room
     {
-        private readonly Room _prefab;
+        private readonly T _prefab;
         private readonly Transform _parent;
 
-        public RoomFactory(Room roomPrefab, Transform parentForRooms = null)
+        public RoomFactory(T roomPrefab, Transform parentForRooms = null)
         {
             _prefab = roomPrefab;
             _parent = parentForRooms;
         }
 
-        public Map CreateMap(string mapJson)
+        public Map<T> CreateMap(string mapJson)
         {
             if (string.IsNullOrEmpty(mapJson))
                 throw new ArgumentException("Json is empty or null");
@@ -26,19 +26,19 @@ namespace NPPMap.MapCreating
             if (mapData == null)
                 throw new ArgumentException("Json is incorrect");
 
-            return new Map(mapData, CreateRooms(mapData));
+            return new Map<T>(mapData, CreateRooms(mapData));
         }
 
-        public Room CreateRoom(RoomData roomData)
+        public T CreateRoom(RoomData roomData)
         {
-            Room room = Object.Instantiate(_prefab, roomData.RoomPosition, Quaternion.identity, _parent);
+            T room = Object.Instantiate(_prefab, roomData.RoomPosition, Quaternion.identity, _parent);
             room.Init(roomData);
             return room;
         }
 
-        public List<Room> CreateRooms(MapData mapData)
+        public List<T> CreateRooms(MapData mapData)
         {
-            var result = new List<Room>();
+            var result = new List<T>();
             foreach (RoomData roomData in mapData.Rooms)
                 result.Add(CreateRoom(roomData));
 

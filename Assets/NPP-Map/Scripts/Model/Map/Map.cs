@@ -7,12 +7,12 @@ namespace NPPMap.MapCreating
     /// <summary>
     /// Модель с объектами созданными на сцене
     /// </summary>
-    public class Map
+    public class Map<T> where T : Room
     {
         public MapData MapData { get; set; }
-        public List<Room> Rooms { get; set; }
+        public List<T> Rooms { get; set; }
         
-        public Map(MapData mapData, List<Room> createRooms)
+        public Map(MapData mapData, List<T> createRooms)
         {
             MapData = mapData;
             Rooms = createRooms ?? throw new ArgumentNullException(nameof(createRooms));
@@ -24,7 +24,7 @@ namespace NPPMap.MapCreating
             Rooms.Clear();
         }
 
-        public void AddRoom(Room createRoom)
+        public void AddRoom(T createRoom)
         {
             MapData.Rooms.Add(createRoom.Data);
             Rooms.Add(createRoom);

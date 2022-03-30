@@ -21,12 +21,12 @@ namespace NPPMap.MapCreating
         private RoomSketch _roomSketch;
         private float _offsetZ = 10;
 
-        private RoomFactory _roomFactory;
-        private Map _map;
+        private RoomFactory<Room> _roomFactory;
+        private Map<Room> _map;
 
         private void Start()
         {
-            _roomFactory = new RoomFactory(roomPrefab, parentForRooms);
+            _roomFactory = new RoomFactory<Room>(roomPrefab, parentForRooms);
             _roomSketch = new RoomSketch(simpleRoomVisualizer);
             roomPainter.Init(_roomSketch.TryGetLastPoint);
             simpleWallVisualizer.Init(roomPainter, _roomSketch.TryGetLastPoint);
@@ -58,7 +58,7 @@ namespace NPPMap.MapCreating
 
         public void Enable()
         {
-            _map = new Map(new MapData(), new List<Room>());
+            _map = new Map<Room>(new MapData(), new List<Room>());
             simpleWallVisualizer.Enable();
             roomPainter.Enable();
             roomPainter.OnSetPoint += _roomSketch.AddPoint;

@@ -12,10 +12,17 @@ namespace NPPMap
 
         public bool IsOpened { get; private set; }
 
-        public void OnDrag(PointerEventData eventData) =>
-            SetPopupPosition(transform.position + (Vector3) eventData.delta);
+        public async Task Close()
+        {
+            await AnimatePopup(GetDefaultScale(), Vector3.zero, animationDuration);
+            gameObject.SetActive(false);
+            IsOpened = false;
+        }
 
-        protected abstract void SetData(T data);
+        public void CloseSync() => Close();
+
+        public virtual void OnDrag(PointerEventData eventData) =>
+            SetPopupPosition(transform.position + (Vector3)eventData.delta);
 
         public async Task Open(T data, Vector3 position)
         {
@@ -27,32 +34,27 @@ namespace NPPMap
             gameObject.SetActive(true);
             await Task.Yield();
             onStartOpen?.Invoke();
-            await AnimatePopup(Vector3.zero, Vector3.one, animationDuration);
+            await AnimatePopup(Vector3.zero, GetDefaultScale(), animationDuration);
 
             IsOpened = true;
         }
 
-        public void CloseSync() => Close();
-
-        public async Task Close()
+        public virtual void SetPopupPosition(Vector3 position)
         {
-            await AnimatePopup(Vector3.one, Vector3.zero, animationDuration);
-            gameObject.SetActive(false);
-            IsOpened = false;
-        }
-
-        public void SetPopupPosition(Vector3 position)
-        {
-            var rectTransform = (RectTransform) transform;
+            var rectTransform = (RectTransform)transform;
             var canvas = rectTransform.root.GetComponentInChildren<Canvas>();
             Vector2 sizeDelta = rectTransform.sizeDelta;
             float positionY = position.y - rectTransform.pivot.y * sizeDelta.y + sizeDelta.y;
-            float height = ((RectTransform) canvas.transform).sizeDelta.y;
-            
+            float height = ((RectTransform)canvas.transform).sizeDelta.y;
+
             rectTransform.position = position;
             if (positionY >= height)
                 rectTransform.position -= Vector3.up * (positionY - height);
         }
+
+        protected virtual Vector3 GetDefaultScale() => Vector3.one;
+
+        protected abstract void SetData(T data);
 
         private async Task AnimatePopup(Vector3 start, Vector3 end, float duration)
         {
